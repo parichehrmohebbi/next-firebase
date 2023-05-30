@@ -1,0 +1,13 @@
+- add manifest.json and icon folder with different sizes
+- add more usefull hooks
+- add fetcher functions wrappers
+- add error handling logic
+- add endpoint wrappers
+- add interceptors for response and request
+- configure PWA and service worker
+- add varaibles and more Sass templates
+- configure chromatic with storybook
+- create a design system with storybook
+- add some usable components
+- solve layout issue in storybook
+- solve image issue in storybook
