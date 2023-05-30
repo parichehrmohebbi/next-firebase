@@ -1,55 +1,69 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "@context/AuthContext";
 import addData from "@firebase/firestore/addData";
-import { AuthContextProvider } from "@context/AuthContext";
 
 import { useRouter } from "next/navigation";
 function AddTech() {
   const { user } = useAuthContext();
-  console.log("eeeeee", user);
+  console.log("firebase user", user);
   const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   React.useEffect(() => {
-    if (user == null) router.push("/");
+    if (user == null) router.push("/auth/signIn");
   }, [user]);
 
   const handleSumbit = async () => {
     const data = {
-      name: "John snow",
-      house: "Stark",
+      title: title,
+      description: description,
     };
-    const { result, error } = await addData("users", "user-id", data);
+    const { result, error } = await addData("dictionary", data);
 
     if (error) {
       return console.log(error);
-    }
+    } else router.push("/");
   };
 
   return (
-    <AuthContextProvider>
-      <h1>Only logged in users can view this page</h1>
+    <>
+      <h1 className="font-bold pb-10 text-2xl">
+        Add a new tech to the firebase collection
+      </h1>
       <div>
-        <label>Title</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <label htmlFor="title">
+          <p>Title</p>
+          <input
+            type="text"
+            value={title}
+            className="rounded-lg w-[20rem] h-10 pl-4 mb-4"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
       </div>
       <div>
-        <label>Description</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <label htmlFor="description">
+          <p>Description</p>
+          <input
+            type="text"
+            value={description}
+            className="rounded-lg w-[20rem] h-10 pl-4"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
       </div>
-      <button onClick={handleSumbit}></button>
-    </AuthContextProvider>
+      <button
+        onClick={handleSumbit}
+        className="rounded-lg bg-orange  h-10 mt-7 w-[20rem]"
+      >
+        {" "}
+        create{" "}
+      </button>
+    </>
   );
 }
 

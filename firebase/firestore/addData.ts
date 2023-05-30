@@ -1,13 +1,15 @@
 import firebase_app from "../config";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { generateUUID } from "@src/core/utility";
 
 const db = getFirestore(firebase_app);
-export default async function addData(collection, id, data) {
+
+export default async function addData(collection, data) {
   let result = null;
   let error = null;
 
   try {
-    result = await setDoc(doc(db, collection, id), data, {
+    result = await setDoc(doc(db, collection, generateUUID()), data, {
       merge: true,
     });
   } catch (e) {

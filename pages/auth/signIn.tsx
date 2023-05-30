@@ -19,14 +19,17 @@ function SignIn() {
 
     // else successful
     console.log(result);
-    return router.push("/admin");
+    return router.push("/");
   };
   return (
-    <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign in</h1>
-        <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
+    <>
+      <div className="flex flex-col justify-center items-center text-gray-dark">
+        <h1 className="p-24 ">
+          <span className="font-bold">firebase sign in</span> with email and
+          password
+        </h1>
+        <form onSubmit={handleForm} className="flex flex-col">
+          <label htmlFor="email" className="pb-6">
             <p>Email</p>
             <input
               onChange={(e) => setEmail(e.target.value)}
@@ -34,7 +37,8 @@ function SignIn() {
               type="email"
               name="email"
               id="email"
-              placeholder="example@mail.com"
+              placeholder=" example@mail.com"
+              className="rounded-lg w-[20rem] h-10 pl-4"
             />
           </label>
           <label htmlFor="password">
@@ -46,12 +50,21 @@ function SignIn() {
               name="password"
               id="password"
               placeholder="password"
+              className="rounded-lg w-[20rem] h-10 pl-4"
             />
           </label>
-          <button type="submit">Sign in</button>
+          <button className="rounded-lg bg-orange h-10 mt-10" type="submit">
+            Sign in
+          </button>
+          <button
+            className="rounded-lg border-gray-dark border h-10 mt-4"
+            onClick={() => router.push("/auth/signUp")}
+          >
+            Sign up
+          </button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

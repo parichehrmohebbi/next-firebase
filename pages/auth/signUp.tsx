@@ -19,38 +19,43 @@ function SignUp() {
 
     // else successful
     console.log(result);
-    return router.push("/admin");
+    return router.push("/");
   };
   return (
-    <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign up</h1>
-        <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </label>
-          <button type="submit">Sign up</button>
-        </form>
-      </div>
+    <div className="flex flex-col justify-center items-center text-gray-dark">
+      <h1 className="p-24 ">
+        <span className="font-bold">firebase sign in</span> with email and
+        password
+      </h1>
+      <form onSubmit={handleForm} className="flex flex-col">
+        <label htmlFor="email" className="pb-6">
+          <p>Email</p>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            type="email"
+            name="email"
+            id="email"
+            placeholder="example@mail.com"
+            className="rounded-lg w-[20rem] h-10 pl-4"
+          />
+        </label>
+        <label htmlFor="password">
+          <p>Password</p>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+            className="rounded-lg w-[20rem] h-10 pl-4"
+          />
+        </label>
+        <button className="rounded-lg bg-orange h-10 mt-10" type="submit">
+          Sign up
+        </button>
+      </form>
     </div>
   );
 }
