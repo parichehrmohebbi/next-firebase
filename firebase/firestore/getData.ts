@@ -24,13 +24,11 @@ export async function getDocument(collectionName, id) {
 }
 
 export async function getDocuments(collectionName) {
-  const icollection = collection(db, collectionName);
-
   let result = null;
   let error = null;
 
   try {
-    const q = query(collection(db, "dictionary"));
+    const q = query(collection(db, collectionName));
     const data = await getDocs(q);
     result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   } catch (e) {
